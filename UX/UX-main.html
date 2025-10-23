@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: grid;
+            grid-template-rows: 100px 1fr 100px;
+            grid-template-columns: 300px auto;
+            grid-template-areas: "header header" "aside main" "footer footer";
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        /* HEADER STYLES */
+        header {
+            grid-area: header;
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            justify-content: space-between;
+            align-items: center;
+            background: darkred;
+            border: 3px solid #000;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: yellow;
+            border: 2px solid #333;
+        }
+
+        #top-menu {
+            display: flex;
+            gap: 15px;
+            height: 80px;
+            padding: 10px;
+            align-items: center;
+        }
+
+        #top-menu button {
+            height: 60px;
+            min-width: 120px;
+            border: 2px solid #ff6b6b;
+            background: white;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        /* ASIDE STYLES */
+        aside {
+            grid-area: aside;
+            border: 3px dotted red;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-preview {
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .news-item {
+            border: 2px solid #2196F3;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        /* MAIN CONTENT STYLES */
+        main {
+            grid-area: main;
+            min-height: 800px;
+            border: 3px dotted blue;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .welcome-section {
+            border: 3px solid #FF9800;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            border: 3px solid #9C27B0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .action-card {
+            border: 2px solid #E91E63;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recent-creations {
+            border: 3px solid #009688;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .creation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .creation-item {
+            border: 2px solid #795548;
+            padding: 15px;
+            border-radius: 6px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .creation-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .creation-actions button {
+            padding: 5px 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .weather-context {
+            border: 3px solid #FFC107;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .weather-info, .context-info {
+            border: 2px solid #FF5722;
+            padding: 10px;
+            border-radius: 6px;
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        /* FOOTER STYLES */
+        footer {
+            grid-area: footer;
+            background: darkblue;
+            border: 3px solid #000;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-section {
+            border: 2px solid #03A9F4;
+            padding: 10px;
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img class="logo" alt="logo"/>
+        <nav id="top-menu">
+            <button id="profile-btn">👤 Профиль</button>
+            <button id="history-btn">📚 История запросов</button>
+            <button id="help-btn">❓ Помощь</button>
+        </nav>
+    </header>
+
+    <aside>
+        <h3>💬 Последние чаты</h3>
+        <div class="chat-preview">
+            <strong>Вечерний образ</strong>
+            <p>Обновлено 2 часа назад</p>
+        </div>
+        <div class="chat-preview">
+            <strong>Офисный стиль</strong>
+            <p>Обновлено вчера</p>
+        </div>
+        <div class="chat-preview">
+            <strong>Спортивный лук</strong>
+            <p>Обновлено 2 дня назад</p>
+        </div>
+        
+        <h3>📢 Новости стиля</h3>
+        <div class="news-item">
+            <p>Новая коллекция весна-лето</p>
+        </div>
+        <div class="news-item">
+            <p>Тренды месяца</p>
+        </div>
+    </aside>
+
+    <main>
+        <section class="welcome-section">
+            <h1>Добро пожаловать в Подборочку! 👗</h1>
+            <p>Ваш персональный стилист всегда под рукой</p>
+        </section>
+
+        <section class="weather-context">
+            <div class="weather-info">
+                <h3>🌤️ Погода сегодня</h3>
+                <p>+18°C, солнечно</p>
+            </div>
+            <div class="context-info">
+                <h3>🎯 Рекомендуемый контекст</h3>
+                <p>Городской стиль, комфорт</p>
+            </div>
+        </section>
+
+        <section class="quick-actions">
+            <div class="action-card">
+                <h3>🎯 Создать стиль по промпту</h3>
+                <p>Опишите желаемый образ</p>
+            </div>
+            <div class="action-card">
+                <h3>👔 Создать из гардероба</h3>
+                <p>Используйте ваши вещи</p>
+            </div>
+            <div class="action-card">
+                <h3>📸 Дополнить фото аксессуарами</h3>
+                <p>Загрузите фото одежды</p>
+            </div>
+            <div class="action-card">
+                <h3>💬 Чат с ассистентом</h3>
+                <p>Персональная консультация</p>
+            </div>
+        </section>
+
+        <section class="recent-creations">
+            <h2>⭐ Недавние создания</h2>
+            <div class="creation-grid">
+                <div class="creation-item">
+                    <strong>Деловой образ</strong>
+                    <p>Создано 12.04.2024</p>
+                    <div class="creation-actions">
+                        <button>Открыть</button>
+                        <button>Доработать</button>
+                    </div>
+                </div>
+                <div class="creation-item">
+                    <strong>Вечерний наряд</strong>
+                    <p>Создано 10.04.2024</p>
+                    <div class="creation-actions">
+                        <button>Открыть</button>
+                        <button>Доработать</button>
+                    </div>
+                </div>
+                <div class="creation-item">
+                    <strong>Повседневный стиль</strong>
+                    <p>Создано 08.04.2024</p>
+                    <div class="creation-actions">
+                        <button>Открыть</button>
+                        <button>Доработать</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-section">
+            <p>📞 Поддержка</p>
+        </div>
+        <div class="footer-section">
+            <p>🔒 Конфиденциальность</p>
+        </div>
+        <div class="footer-section">
+            <p>ℹ️ О приложении</p>
+        </div>
+        <div class="footer-section">
+            <p>⭐ Оцените нас</p>
+        </div>
+    </footer>
+</body>
+
+</html>
