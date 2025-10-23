@@ -1,12 +1,18 @@
 /* Стили для страницы чата */
 
 /* Боковая панель с чатами */
-aside {
-    overflow-y: scroll;
-    max-height: calc(100vh - 200px);
+#side-panel {
+    >a[href="index.html"] {
+        display: block;
+        text-align: center;
+        background: rgba(38, 123, 221, 0.3);
+        padding: 0.5em;
+    }
 }
 
 .chats-list {
+    overflow-y: scroll;
+    max-height: calc(100vh - 200px);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -162,7 +168,7 @@ aside {
 
 /* Секция проектирования */
 body[project] {
-    aside .chat-item {
+    #side-panel .chat-item {
         border: 1px solid rgba(76, 175, 80, 0.3);
         background-color: rgba(76, 175, 80, 0.1);
     }

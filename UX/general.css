@@ -20,7 +20,7 @@ body {
     display: grid;
     grid-template-rows: 100px 1fr 100px;
     grid-template-columns: 300px auto;
-    grid-template-areas: "header header" "aside main" "footer footer";
+    grid-template-areas: "header header" "side main" "footer footer";
     min-height: 100vh;
     width: 100%;
     max-width: 1200px;
@@ -55,14 +55,48 @@ header {
     }
 }
 
-/* ASIDE STYLES */
-aside {
-    grid-area: aside;
-    padding: 20px;
+/* SIDE PANEL STYLES */
+#side-panel {
+    grid-area: side;
+    align-self: stretch;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    height: 100%;
+
+    >* {
+        border-bottom: 2px solid red;
+    }
 }
+
+#main-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+
+    button,
+    a {
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        .toolname {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        p:not(.toolname) {
+            font-size: 0.8rem;
+            color: #333;
+        }
+    }
+}
+
+
 
 /* MAIN CONTENT STYLES */
 main {
@@ -101,14 +135,21 @@ body[project] {
         }
     }
 
-    aside {
+    #side-panel {
         border: 3px dotted rgba(255, 0, 0, 0.5);
+    }
 
-        >div {
-            border: 2px solid rgba(76, 175, 80, 0.5);
-            padding: 10px;
-            border-radius: 6px;
-            background-color: rgba(76, 175, 80, 0.3);
+    #main-menu {
+
+        button,
+        a {
+            border: 2px outset rgba(156, 39, 176, 0.5);
+            background-color: rgba(156, 39, 176, 0.3);
+
+            &:hover {
+                border-style: inset;
+                background-color: rgba(156, 39, 176, 0.5);
+            }
         }
     }
 

@@ -21,29 +21,50 @@
             </nav>
         </header>
 
-        <aside>
-            <h3>💬 Последние чаты</h3>
-            <div>
-                <strong>Вечерний образ</strong>
-                <p>Обновлено 2 часа назад</p>
-            </div>
-            <div>
-                <strong>Офисный стиль</strong>
-                <p>Обновлено вчера</p>
-            </div>
-            <div>
-                <strong>Спортивный лук</strong>
-                <p>Обновлено 2 дня назад</p>
-            </div>
-            
-            <h3 class="news">📢 Новости стиля</h3>
-            <div>
-                <p>Новая коллекция весна-лето</p>
-            </div>
-            <div>
-                <p>Тренды месяца</p>
-            </div>
-        </aside>
+        <div id="side-panel">
+            <nav id="main-menu">
+                <button onclick="window.location.href='style.html'">
+                    <p class="toolname">🎯 Создать стиль по промпту</p>
+                    <p>Опишите желаемый образ</p>
+                </button>
+                <button onclick="window.location.href='wardrobe.html'">
+                    <p class="toolname">👔 Создать из гардероба</p>
+                    <p>Используйте ваши вещи</p>
+                </button>
+                <button onclick="window.location.href='add.html'">
+                    <p class="toolname">📸 Дополнить образ</p>
+                    <p>Загрузите фото</p>
+                </button>
+                <button onclick="window.location.href='chat.html'">
+                    <p class="toolname">💬 Чат с ассистентом</p>
+                    <p>Персональная консультация</p>
+                </button>
+            </nav>
+
+            <aside>
+                <h3>💬 Последние чаты</h3>
+                <div onclick="window.location.href='chat.html'">
+                    <strong>Вечерний образ</strong>
+                    <p>Обновлено 2 часа назад</p>
+                </div>
+                <div onclick="window.location.href='chat.html'">
+                    <strong>Офисный стиль</strong>
+                    <p>Обновлено вчера</p>
+                </div>
+                <div onclick="window.location.href='chat.html'">
+                    <strong>Спортивный лук</strong>
+                    <p>Обновлено 2 дня назад</p>
+                </div>
+                
+                <h3 class="news">📢 Новости стиля</h3>
+                <div>
+                    <p>Новая коллекция весна-лето</p>
+                </div>
+                <div>
+                    <p>Тренды месяца</p>
+                </div>
+            </aside>
+        </div>
 
         <main>
             <section class="welcome">
