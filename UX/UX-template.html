@@ -2,84 +2,47 @@
 <html>
 
 <head>
+    <title>Подборочка</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            display: grid;
-            grid-template-rows: 100px 1fr 100px;
-            grid-template-columns: 300px auto;
-            grid-template-areas: "header header" "aside main" "footer footer";
-        }
-
-        header {
-            grid-area: header;
-            display: flex;
-            width: 100%;
-            padding: 10px;
-            justify-content: space-between;
-            background: darkred;
-
-            >img {
-                width: 80px;
-                height: 80px;
-                background: yellow;
-            }
-
-            >nav {
-                display: block;
-                height: 80px;
-                padding: 10px;
-                display: flex;
-
-                >button {
-                    height: 60px;
-                    min-width: 120px;
-                }
-            }
-        }
-
-        aside {
-            grid-area: aside;
-            border: 2px dotted red;
-        }
-
-        main {
-            grid-area: main;
-            min-height: 800px;
-            border: 2px dotted blue;
-        }
-
-        footer {
-            grid-area: footer;
-            background: darkblue;
-        }
+        @import url("general.css");
     </style>
 </head>
 
-<body>
+<body project>
+    <div id="content">
+        <header>
+            <img class="logo" alt="logo"/>
+            <h1>Подборочка</h1>
+            <nav id="top-menu">
+                <button id="profile-btn">👤 Профиль</button>
+                <button id="history-btn">📚 История запросов</button>
+                <button id="help-btn">❓ Помощь</button>
+            </nav>
+        </header>
 
-    <header>
-        <img class="logo" alt="logo"/>
-        <nav id="top-menu">
-            <button id="profile-btn">Профиль</button>
-            <button id="history-btn">История запросов</button>
-            <button id="help-btn">Помощь</button>
-        </nav>
-    </header>
+        <aside>
+            <!-- Контент боковой панели будет разным на разных страницах -->
+        </aside>
 
-    <aside>
-        Боковая панель – на всякий случай. Можно сюда бахнуть маскота, новости или список последних чатов.
-    </aside>
+        <main>
+            <!-- Основной контент страницы -->
+        </main>
 
-    <main>
-
-    </main>
-
-    <footer>
-    </footer>
+        <footer>
+            <div>
+                <p>📞 Поддержка</p>
+            </div>
+            <div>
+                <p>🔒 Конфиденциальность</p>
+            </div>
+            <div>
+                <p>ℹ️ О приложении</p>
+            </div>
+            <div>
+                <p>⭐ Оцените нас</p>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>

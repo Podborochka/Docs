@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Подборочка - Чат</title>
+    <style>
+        @import url("general.css");
+        @import url("chat.css");
+    </style>
+</head>
+
+<body project>
+    <div id="content">
+        <header>
+            <img class="logo" alt="logo"/>
+            <h1>Подборочка</h1>
+            <nav id="top-menu">
+                <button id="profile-btn">👤 Профиль</button>
+                <button id="history-btn">📚 История запросов</button>
+                <button id="help-btn">❓ Помощь</button>
+            </nav>
+        </header>
+
+        <aside>
+            <div class="chats-list">
+                <!-- Список чатов будет сгенерирован JavaScript -->
+            </div>
+        </aside>
+
+        <main class="chat-main">
+            <div class="chat-messages">
+                <div class="message user-message">
+                    <div class="message-content">
+                        <p>Подбери мне лук для дня рождения. Празднуем у друга дома.</p>
+                    </div>
+                </div>
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Вот лук, который позволит вам чувствовать себя комфортно и стильно в неформальной обстановке.</p>
+                    </div>
+                </div>
+                <div class="message bot-message">
+                    <div class="message-content images">
+                        <div class="image-placeholder">🖼️ Вариант 1</div>
+                        <div class="image-placeholder">🖼️ Вариант 2</div>
+                        <div class="image-placeholder">🖼️ Вариант 3</div>
+                    </div>
+                </div>
+                <div class="message user-message">
+                    <div class="message-content">
+                        <p>Давай второй вариант, только попробуем его немного освежить. Добавь аксессуар.</p>
+                    </div>
+                </div>
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Полагаю, что к такому стилю подойдёт стильный кожаный браслет и солнцезащитные очки.</p>
+                    </div>
+                </div>
+                <div class="message bot-message">
+                    <div class="message-content images">
+                        <div class="image-placeholder">🖼️ Обновлённый вариант</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Введите сообщение...">
+                <button>Отправить</button>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p>📞 Поддержка</p>
+            </div>
+            <div>
+                <p>🔒 Конфиденциальность</p>
+            </div>
+            <div>
+                <p>ℹ️ О приложении</p>
+            </div>
+            <div>
+                <p>⭐ Оцените нас</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Генерация списка чатов
+        const chatsList = document.querySelector('.chats-list');
+        const chatNames = [
+            'Вечерний образ', 'Офисный стиль', 'Спортивный лук', 'Свадебный наряд',
+            'Повседневный образ', 'Деловой ланч', 'Романтический ужин', 'Прогулка в парке',
+            'Тренировка', 'Поход в кино', 'Рабочая встреча', 'Собеседование',
+            'Поездка на природу', 'Корпоратив', 'День рождения', 'Свидание',
+            'Шоппинг', 'Фотосессия', 'Концерт', 'Театр',
+            'Кафе с друзьями', 'Поездка за город', 'Пляжный отдых', 'Горнолыжный курорт',
+            'Осенняя прогулка', 'Зимний вечер', 'Весенний пикник', 'Летняя вечеринка',
+            'Выпускной вечер', 'Юбилей'
+        ];
+
+        chatNames.forEach((name, index) => {
+            const chatItem = document.createElement('div');
+            chatItem.className = 'chat-item';
+            chatItem.innerHTML = `
+                <div class="chat-name">${name}</div>
+                <div class="chat-menu">
+                    <div class="menu-dots">⋮</div>
+                    <div class="menu-dropdown">
+                        <div class="menu-item">Переименовать</div>
+                        <div class="menu-item">Закрепить</div>
+                        <div class="menu-item">Удалить</div>
+                    </div>
+                </div>
+            `;
+            chatsList.appendChild(chatItem);
+        });
+    </script>
+</body>
+
+</html>
