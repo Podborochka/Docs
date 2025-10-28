@@ -62,10 +62,6 @@ header {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    >* {
-        border-bottom: 2px solid red;
-    }
 }
 
 #main-menu {
@@ -137,6 +133,10 @@ body[project] {
 
     #side-panel {
         border: 3px dotted rgba(255, 0, 0, 0.5);
+
+        >*:not(:first-child) {
+            border-top: 2px solid red;
+        }
     }
 
     #main-menu {
