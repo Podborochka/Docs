@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Дополнить образ - Подборочка</title>
+    <style>
+        @import url("general.css");
+        @import url("style.css");
+    </style>
+</head>
+
+<body project>
+    <div id="content">
+        <header>
+            <img class="logo" alt="logo" />
+            <h1>Подборочка</h1>
+            <nav id="top-menu">
+                <button id="profile-btn">👤 Профиль</button>
+                <button id="history-btn">📚 История запросов</button>
+                <button id="help-btn">❓ Помощь</button>
+            </nav>
+        </header>
+
+        <div id="side-panel">
+            <nav id="main-menu">
+                <button onclick="window.location.href='index.html'">
+                    <p class="toolname">🏠 На главную</p>
+                    <p>Вернуться на главную страницу</p>
+                </button>
+                <button onclick="window.location.href='style.html'">
+                    <p class="toolname">🎯 Создать стиль по промпту</p>
+                    <p>Опишите желаемый образ</p>
+                </button>
+                <button onclick="window.location.href='wardrobe.html'">
+                    <p class="toolname">👔 Создать из гардероба</p>
+                    <p>Используйте ваши вещи</p>
+                </button>
+                <button onclick="window.location.href='chat.html'">
+                    <p class="toolname">💬 Чат с ассистентом</p>
+                    <p>Персональная консультация</p>
+                </button>
+            </nav>
+        </div>
+
+        <main>
+            <section class="style-form">
+                <h1>🎯 Создать стиль по промпту</h1>
+
+                <form id="style-form">
+
+                    <!-- Пол -->
+                    <div class="form-group">
+                        <label for="gender">Пол</label>
+                        <select id="gender" name="gender" required>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                            <option value="other">Другой</option>
+                        </select>
+                    </div>
+
+                    <!-- Вкладки размеров -->
+                    <div class="tabs">
+                        <div class="tab-buttons">
+                            <button type="button" class="tab-button active" data-tab="clothing-size">По размеру
+                                одежды</button>
+                            <button type="button" class="tab-button" data-tab="body-size">По размерам тела</button>
+                        </div>
+
+                        <!-- Вкладка размеров одежды -->
+                        <div class="tab-content active" id="clothing-size-tab">
+                            <div class="form-group">
+                                <label>Тело</label>
+                                <ol class="size-list">
+                                    <li>
+                                        <input type="radio" name="body-size" id="size-s" value="S">
+                                        <label for="size-s">S</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="body-size" id="size-m" value="M">
+                                        <label for="size-m">M</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="body-size" id="size-l" value="L">
+                                        <label for="size-l">L</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="body-size" id="size-xl" value="XL">
+                                        <label for="size-xl">XL</label>
+                                    </li>
+                                    <li>
+                                        <input type="number" name="nxl-count" min="2" max="10" value="2"
+                                            class="nxl-input">
+                                        <input type="radio" name="body-size" id="size-nxl" value="Custom">
+                                        <label for="size-nxl">XL</label>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Штаны</label>
+                                <div class="pants-inputs">
+                                    <div class="input-with-help">
+                                        <input type="number" placeholder="Полнота" min="40" max="70">
+                                        <button type="button" class="help-btn" data-help="pants-fullness">?</button>
+                                    </div>
+                                    <div class="input-with-help">
+                                        <input type="number" placeholder="Длина" min="150" max="200">
+                                        <button type="button" class="help-btn" data-help="pants-length">?</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Вкладка размеров тела -->
+                        <div class="tab-content" id="body-size-tab">
+                            <div class="form-group">
+                                <label for="chest">Обхват груди (см)</label>
+                                <input type="number" id="chest" name="chest" min="50" max="200">
+                            </div>
+                            <div class="form-group">
+                                <label for="waist">Обхват талии (см)</label>
+                                <input type="number" id="waist" name="waist" min="40" max="150">
+                            </div>
+                            <div class="form-group">
+                                <label for="hips">Обхват бёдер (см)</label>
+                                <input type="number" id="hips" name="hips" min="60" max="200">
+                            </div>
+                            <div class="form-group">
+                                <label for="leg">Обхват ноги (см)</label>
+                                <input type="number" id="leg" name="leg" min="30" max="80">
+                            </div>
+                            <div class="form-group">
+                                <label for="leg-length">Длина ног (см)</label>
+                                <input type="number" id="leg-length" name="leg-length" min="60" max="120">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Промпт -->
+                    <div class="form-group">
+                        <label for="prompt">Что добавить к образу?</label>
+                        <textarea id="prompt" name="prompt"
+                            placeholder="Опишите, какой стиль вы хотите, например «...»"
+                            rows="4"></textarea>
+                    </div>
+
+                    <!-- Кнопка создания -->
+                    <button type="submit" class="create-btn">Дополнить образ</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div>
+                <p>📞 Поддержка</p>
+            </div>
+            <div>
+                <p>🔒 Конфиденциальность</p>
+            </div>
+            <div>
+                <p>ℹ️ О приложении</p>
+            </div>
+            <div>
+                <p>⭐ Оцените нас</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Диалоги помощи с нативным тегом <dialog> -->
+    <dialog id="pants-fullness-help" class="help">
+        <h3>Полнота штанов</h3>
+        <div>
+            <p><strong>Полнота штанов</strong> - это обхват бёдер, для которого предназначены штаны.</p>
+            <p>Обычно указывается на бирке штанов в виде числа (например, 48, 50, 52).</p>
+            <p>Чтобы узнать свой размер полноты:</p>
+            <ul>
+                <li>Измерьте обхват бёдер в самом широком месте</li>
+                <li>Используйте таблицу размеров производителя</li>
+                <li>Или посмотрите на бирке ваших самых удобных штанов</li>
+            </ul>
+        </div>
+        <form method="dialog">
+            <button class="close-dialog">Закрыть</button>
+        </form>
+    </dialog>
+
+    <dialog id="pants-length-help" class="help">
+        <h3>Длина штанов</h3>
+        <div>
+            <p><strong>Длина штанов</strong> - это длина внутреннего шва штанов.</p>
+            <p>Обычно указывается на бирке в сантиметрах (например, 170, 176, 182).</p>
+            <p>Чтобы измерить длину:</p>
+            <ul>
+                <li>Измерьте расстояние от паха до щиколотки</li>
+                <li>Или измерьте длину внутреннего шва ваших самых удобных штанов</li>
+                <li>Можно ориентироваться на рост: 170см - рост ~165-175см, 176см - рост ~170-180см и т.д.</li>
+            </ul>
+        </div>
+        <form method="dialog">
+            <button class="close-dialog">Закрыть</button>
+        </form>
+    </dialog>
+
+    <script>
+        // Переключение вкладок
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Выбор размера тела
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Помощь по размерам штанов
+        document.querySelectorAll('.help-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const helpType = btn.getAttribute('data-help');
+                const dialog = document.getElementById(`${helpType}-help`);
+                dialog.showModal();
+            });
+        });
+
+        // Обработка формы
+        document.getElementById('style-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Проверка загружены ли фото
+            if (uploadedPhotos.children.length === 0) {
+                alert('Пожалуйста, загрузите хотя бы одно фото');
+                return;
+            }
+            alert('Образ дополняется...');
+        });
+    </script>
+</body>
+
+</html>
