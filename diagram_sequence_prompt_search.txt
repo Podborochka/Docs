@@ -1,0 +1,51 @@
+!pragma layout smetana
+@startuml
+
+title "Побдор одежды по промпту"
+
+actor user as "Пользователь"
+
+participant app as "Веб-приложение"
+participant web as "Веб-севис"
+participant neural as "Неиронная\nсеть"
+participant db as "Каталог"
+participant llm as "Внешняя ЯМ"
+
+user -> web : Запрос на подбор одежды
+
+  activate web
+  
+    activate llm
+    
+      web -> llm : Отправка промпта и контекста к нему
+      llm --> web : Ключевые токены для подбора одежды
+      
+      web -> neural : Запрос на подбор одежды по токенам
+      activate neural
+      
+      loop пока не найдётся подходящий образ\nиз имеющейся в каталоге одежды
+          neural -> neural : Подбор одежды по токенам
+          neural -> db : Поиск подобранной одежды
+          activate db
+          alt Такая одежда есть
+            db --> neural : Ссылка на товар 
+          else
+            db --> neural : Ошибка об отсутствии такой одежды
+            deactivate db
+          end
+      end
+      
+      neural --> web : Описания, изображения и ссылка на товары
+      
+      deactivate neural
+      
+      web -> llm : Запрос на описание образов
+      llm --> web : Описание образов
+    
+    deactivate llm
+    
+    web -> user : Отображение образов и описания к ним
+  
+  deactivate web
+
+@enduml
