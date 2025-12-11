@@ -1,7 +1,7 @@
 !pragma layout smetana
-@startuml
+@startuml "Создание стиля"
 
-title "Побдор одежды по промпту"
+title "Создание стиля"
 
 actor user as "Пользователь"
 
@@ -11,7 +11,7 @@ participant neural as "Неиронная\nсеть"
 participant db as "Каталог"
 participant llm as "Внешняя ЯМ"
 
-user -> web : Запрос на подбор одежды
+user -> web : Запрос на создание стиля
 
   activate web
   
@@ -23,9 +23,10 @@ user -> web : Запрос на подбор одежды
       web -> neural : Запрос на подбор одежды по токенам
       activate neural
       
+      neural -> neural : Формирование эмбеддингов
+      
       loop пока не найдётся подходящий образ\nиз имеющейся в каталоге одежды
-          neural -> neural : Подбор одежды по токенам
-          neural -> db : Поиск подобранной одежды
+          neural -> db : Поиск одежды по эмбеддингам
           activate db
           alt Такая одежда есть
             db --> neural : Ссылка на товар 

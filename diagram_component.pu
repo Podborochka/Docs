@@ -1,0 +1,88 @@
+!pragma layout smetana
+@startuml "Подборочка"
+
+node "Клиентский браузер" {
+  component client_app as "Клиентское\nвеб-приложение"
+
+  component offline_queue as "Очередь офлайн-запросов"
+  component photo_uploader as "Модуль\nзагрузки фото"
+  component chat_ui as "Интерфейс чата"
+  component profile_ui as "Экран профиля"
+  component maskot as "Маскот"
+  
+  client_app -u-> offline_queue
+  client_app -u-> photo_uploader
+  client_app -u--> chat_ui
+  client_app -u--> profile_ui
+  client_app - maskot
+}
+
+node appsrv as "Сервер приложения" {
+
+  portin 443
+  portout LAN
+
+  component web as "Веб-сервис"
+  component neural as "Обработка промптов"
+  component cv as "Компьютерное зрение"
+  component chat as "Чат-сервис"
+  component stylesvc as "Генерация изображений"
+  component partner as "Партнёрский сервис\nи рефералы"
+  component weather as "Интеграция\nпогоды/GPS"
+  component auth as "Сервис аутентификации"
+
+  web - neural
+  web -- cv
+  web -- chat
+  web --- stylesvc
+  web --- partner
+  web ---- weather
+  web ---- auth
+  
+  neural - LAN
+}
+
+node dbsrv as "Сервер базы данных" {
+  portin LAN1 as "LAN" 
+  database catalogue as "Каталог\nодежды"
+  component bot as "Бот обновления\nкаталога"
+  
+  database userdb as "База\nпользователей"
+  database chatdb as "Хранилище\nсообщений"
+  database imgstore as "Хранилище\n фото"
+  database refdb as "Реферальная\nаналитика"
+
+  catalogue -- bot
+  LAN1 -- catalogue
+  LAN1 -- chatdb
+  LAN1 -- userdb
+  LAN1 --- imgstore
+  LAN1 --- refdb
+  
+}
+
+interface HTML
+interface dbif
+
+cloud llm as "Внешняя большая\nязыковая модель"
+cloud internet as "Интернет"
+cloud ext_weather as "Погодный сервис"
+cloud ext_geo as "Геолокация"
+
+' Клиент → сервер'
+client_app --( HTML
+HTML --- 443
+443 -- web
+
+' Сервер → БД'
+LAN --( dbif
+dbif -- LAN1
+
+' Внешние связи'
+web -u- llm
+bot -- internet
+partner -- internet
+weather -- ext_weather
+weather -- ext_geo
+
+@enduml
