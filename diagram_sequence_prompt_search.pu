@@ -4,12 +4,11 @@
 title "Создание стиля"
 
 actor user as "Пользователь"
-
-participant app as "Веб-приложение"
 participant web as "Веб-севис"
-participant neural as "Неиронная\nсеть"
-participant db as "Каталог"
 participant llm as "Внешняя ЯМ"
+participant embed as "Генератор\nэмбеддингов"
+participant vdb as "Веторная БД"
+participant db as "Каталог"
 
 user -> web : Запрос на создание стиля
 
@@ -19,33 +18,31 @@ user -> web : Запрос на создание стиля
     
       web -> llm : Отправка промпта и контекста к нему
       llm --> web : Ключевые токены для подбора одежды
+
+      web -> embed : Текст для генерации эмбеддингов
+
+      embed -> embed : Генерация эмбеддингов
+      activate vdb
+      embed -> vdb : Векторный поиск по эмбеддингам
+      vdb --> embed : Список векторов (ИД, метаданные)
+      deactivate vdb
       
-      web -> neural : Запрос на подбор одежды по токенам
-      activate neural
-      
-      neural -> neural : Формирование эмбеддингов
+      embed --> web : Нормализованный список товаров с объяснением
       
       loop пока не найдётся подходящий образ\nиз имеющейся в каталоге одежды
-          neural -> db : Поиск одежды по эмбеддингам
+          web -> db : Поиск одежды по эмбеддингам
           activate db
-          alt Такая одежда есть
-            db --> neural : Ссылка на товар 
-          else
-            db --> neural : Ошибка об отсутствии такой одежды
+          alt товар найден
+            db --> web : Данные товара и ссылка
+          else товар отсутствует
+            db --> web : Ошибка об отсутствии товара
             deactivate db
           end
       end
-      
-      neural --> web : Описания, изображения и ссылка на товары
-      
-      deactivate neural
-      
-      web -> llm : Запрос на описание образов
-      llm --> web : Описание образов
     
     deactivate llm
     
-    web -> user : Отображение образов и описания к ним
+    web --> user : Отображение образов и описания к ним
   
   deactivate web
 
